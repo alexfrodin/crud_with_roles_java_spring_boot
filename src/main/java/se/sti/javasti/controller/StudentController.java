@@ -26,4 +26,10 @@ public class StudentController {
         return "index";
     }
 
+    @RequestMapping("/new")
+    public String registerNewStudent(Model model) {
+        Student student = new Student();
+        model.addAttribute(student);
+        return "new_student";
+    }
 }
