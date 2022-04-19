@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import se.sti.javasti.model.Student;
 import se.sti.javasti.services.StudentService;
@@ -37,6 +38,12 @@ public class StudentController {
     @RequestMapping("/save")
     public String createStudent(@ModelAttribute("student") Student student) {
         studentService.createStudent(student);
+        return "redirect:/";
+    }
+
+    @RequestMapping("/delete/{studentId}")
+    public String deleteStudent(@PathVariable (name = "studentId") Long studentId) {
+        studentService.deleteStudent(studentId);
         return "redirect:/";
     }
 }
