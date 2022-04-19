@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import se.sti.javasti.model.Student;
 import se.sti.javasti.services.StudentService;
 
@@ -42,8 +43,17 @@ public class StudentController {
     }
 
     @RequestMapping("/delete/{studentId}")
-    public String deleteStudent(@PathVariable (name = "studentId") Long studentId) {
+    public String deleteStudent(@PathVariable(name = "studentId") Long studentId) {
         studentService.deleteStudent(studentId);
         return "redirect:/";
     }
+
+    @RequestMapping("/edit/{studentId}")
+    public ModelAndView editStudent(@PathVariable(name = "studentId") Long studentId) {
+        ModelAndView modelAndView = new ModelAndView("edit_student");
+        Student student = studentService.getStudent(studentId);
+        modelAndView.addObject("student", student);
+        return modelAndView;
+    }
+
 }
