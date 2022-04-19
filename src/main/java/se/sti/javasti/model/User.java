@@ -19,7 +19,7 @@ public class User {
     private String password;
 
     @Column(name = "is_enabled")
-    private Boolean enabled;
+    private Boolean isEnabled;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
@@ -52,12 +52,12 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getEnabled() {
-        return enabled;
+    public Boolean getIsEnabled() {
+        return isEnabled;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setIsEnabled(Boolean enabled) {
+        this.isEnabled = enabled;
     }
 
     public Set<Role> getRoles() {
