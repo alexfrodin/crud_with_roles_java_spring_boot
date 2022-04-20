@@ -4,7 +4,7 @@ import se.sti.javasti.model.Role;
 
 import java.util.Set;
 
-public class UserReponseDTO {
+public class UserResponseDTO {
 
     private Long id;
     private String username;
