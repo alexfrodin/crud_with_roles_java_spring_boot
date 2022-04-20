@@ -15,7 +15,7 @@ CREATE TABLE users (
     user_id BIGINT AUTO_INCREMENT,
     user_name VARCHAR(64) NOT NULL,
     user_password VARCHAR(128) NOT NULL,
-    is_enabled BOOL DEFAULT true
+    is_enabled BOOL default true
 );
 
 CREATE TABLE users_roles (
