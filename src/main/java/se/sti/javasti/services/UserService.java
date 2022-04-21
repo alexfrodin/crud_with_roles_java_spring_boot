@@ -1,6 +1,5 @@
 package se.sti.javasti.services;
 
-import se.sti.javasti.dto.UserRequestDTO;
 import se.sti.javasti.model.Role;
 import se.sti.javasti.model.User;
 
