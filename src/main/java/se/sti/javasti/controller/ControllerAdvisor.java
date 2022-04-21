@@ -17,10 +17,10 @@ public class ControllerAdvisor {
     public ResponseEntity<Object> handleUserAlreadyExistsException(UserAlreadyExistsException e) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
-        body.put("status", String.format("%s", HttpStatus.BAD_REQUEST));
+        body.put("status", String.format("%s", HttpStatus.CONFLICT));
         body.put("message", e.getMessage());
 
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
     }
 
 }
