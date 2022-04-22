@@ -27,12 +27,12 @@ public class UserResponseDTO {
         this.username = username;
     }
 
-    public Boolean getEnabled() {
-        return isEnabled;
+    public Boolean getIsEnabled() {
+        return this.isEnabled;
     }
 
-    public void setEnabled(Boolean enabled) {
-        isEnabled = enabled;
+    public void setIsEnabled(Boolean isEnabled) {
+        this.isEnabled = isEnabled;
     }
 
     public Set<Role> getRoles() {

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Validated
-public class UserRequestDTO {
+public class UserCreateRequestDTO {
 
     @NotNull(message = "Username may not be null")
     @NotBlank(message = "Username is required")
