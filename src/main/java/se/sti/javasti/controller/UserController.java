@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.sti.javasti.controller.response.OkResponseBody;
-import se.sti.javasti.dto.UserRequestDTO;
+import se.sti.javasti.dto.UserCreateRequestDTO;
 import se.sti.javasti.dto.UserResponseDTO;
+import se.sti.javasti.dto.UserUpdateRequestDTO;
 import se.sti.javasti.model.Role;
 import se.sti.javasti.model.User;
 import se.sti.javasti.services.UserService;
@@ -46,16 +47,26 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void deleteUser(@PathVariable(name = "userId") String userId) {
-        System.out.println(userId);
+    public OkResponseBody<String> deleteUser(@PathVariable(name = "userId") Long userId) {
+        userService.deleteUser(userId);
+        return new OkResponseBody<>(String.format("User with id %s successfully deleted", userId), null);
     }
 
     @PostMapping()
     @PreAuthorize("hasAuthority('ADMIN')")
-    public OkResponseBody<UserResponseDTO> updateUser(@RequestBody @Valid UserRequestDTO userRequestDTO) {
-        User userToCreate = mapper.map(userRequestDTO, User.class);
+    public OkResponseBody<UserResponseDTO> createUser(@RequestBody @Valid UserCreateRequestDTO userCreateRequestDTO) {
+        User userToCreate = mapper.map(userCreateRequestDTO, User.class);
         return new OkResponseBody<>("Created user", mapper.map(
                 userService.createUser(userToCreate), UserResponseDTO.class
+        ));
+    }
+
+    @PutMapping("/{userId}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'EDITOR')")
+    public OkResponseBody<UserResponseDTO> updateUser(@PathVariable(name = "userId") Long id, @RequestBody @Valid UserUpdateRequestDTO userUpdateRequestDTO) {
+        User userToUpdate = mapper.map(userUpdateRequestDTO, User.class);
+        return new OkResponseBody<>("Successfully updated user", mapper.map(
+                userService.updateUser(id, userToUpdate), UserResponseDTO.class
         ));
     }
 
