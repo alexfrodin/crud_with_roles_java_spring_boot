@@ -2,6 +2,7 @@ INSERT INTO students (student_name, student_age) VALUES ('Alexander', 30);
 INSERT INTO students (student_name, student_age) VALUES ('Oskar', 30);
 INSERT INTO students (student_name, student_age) VALUES ('Oscar', 30);
 INSERT INTO students (student_name, student_age) VALUES ('Franck', 30);
+INSERT INTO students (student_name, student_age) VALUES ('Krillinator', 30);
 
 INSERT INTO roles (role_id, role_name) VALUES (1, 'USER');
 INSERT INTO roles (role_id, role_name) VALUES (2, 'CREATOR');
