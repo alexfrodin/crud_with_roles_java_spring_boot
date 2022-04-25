@@ -40,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().and()
                 .authorizeRequests()
                 .antMatchers("/").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
                 .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
@@ -52,7 +53,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().permitAll()
                 .and().exceptionHandling().accessDeniedPage("/403");
-        http.csrf().disable();
         http.headers().frameOptions().disable();
     }
 }
