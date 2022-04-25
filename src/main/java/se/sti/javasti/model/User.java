@@ -22,7 +22,8 @@ public class User {
     private Boolean isEnabled;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
+    @JoinTable(
+            name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
@@ -53,7 +54,7 @@ public class User {
     }
 
     public Boolean getIsEnabled() {
-        return isEnabled;
+        return this.isEnabled;
     }
 
     public void setIsEnabled(Boolean isEnabled) {
@@ -65,6 +66,10 @@ public class User {
     }
 
     public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+        this.roles = new HashSet<>(roles);
+    }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
     }
 }
