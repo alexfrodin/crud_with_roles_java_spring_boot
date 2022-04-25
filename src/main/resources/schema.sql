@@ -20,6 +20,5 @@ CREATE TABLE users (
 
 CREATE TABLE users_roles (
     user_id BIGINT NOT NULL,
-    role_id INTEGER NOT NULL,
-    FOREIGN KEY(user_id) REFERENCES(user_id)
+    role_id INTEGER NOT NULL
 )
