@@ -21,6 +21,8 @@ public class UserCreateRequestDTO {
     @NotNull(message = "At least one role is required")
     private Set<Role> roles;
 
+    private Boolean isEnabled = true;
+
     public String getUsername() {
         return username;
     }
@@ -43,5 +45,13 @@ public class UserCreateRequestDTO {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Boolean getIsEnabled() {
+        return isEnabled;
+    }
+
+    public void setIsEnabled(Boolean enabled) {
+        isEnabled = enabled;
     }
 }
