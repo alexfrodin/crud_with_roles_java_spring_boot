@@ -1,4 +1,4 @@
-package se.sti.javasti.exeption;
+package se.sti.javasti.exception;
 
 public class RoleNotExistsException extends RuntimeException {
     public RoleNotExistsException(String roleName) {

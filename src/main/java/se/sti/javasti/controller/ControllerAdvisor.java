@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import se.sti.javasti.exeption.RoleNotExistsException;
-import se.sti.javasti.exeption.UserAlreadyExistsException;
+import se.sti.javasti.exception.RoleNotExistsException;
+import se.sti.javasti.exception.UserAlreadyExistsException;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
