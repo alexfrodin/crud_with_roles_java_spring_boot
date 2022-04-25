@@ -2,6 +2,7 @@ package se.sti.javasti.dto;
 
 import se.sti.javasti.model.Role;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class UserUpdateRequestDTO {
@@ -9,7 +10,7 @@ public class UserUpdateRequestDTO {
     private String username;
     private String password;
     private Boolean isEnabled;
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     public String getUsername() {
         return username;
@@ -27,11 +28,11 @@ public class UserUpdateRequestDTO {
         this.password = password;
     }
 
-    public Boolean getEnabled() {
+    public Boolean getIsEnabled() {
         return this.isEnabled;
     }
 
-    public void setEnabled(Boolean enabled) {
+    public void setIsEnabled(Boolean enabled) {
         this.isEnabled = enabled;
     }
 
@@ -40,6 +41,6 @@ public class UserUpdateRequestDTO {
     }
 
     public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+        this.roles = new HashSet<>(roles);
     }
 }
