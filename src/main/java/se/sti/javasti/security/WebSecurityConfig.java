@@ -52,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().permitAll()
                 .and()
                 .logout().permitAll()
+                .and().rememberMe()
                 .and().exceptionHandling().accessDeniedPage("/403");
         http.headers().frameOptions().disable();
     }
