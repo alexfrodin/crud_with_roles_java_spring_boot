@@ -6,6 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -23,5 +24,6 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .httpBasic();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // Dont sent cookie to API
     }
 }
