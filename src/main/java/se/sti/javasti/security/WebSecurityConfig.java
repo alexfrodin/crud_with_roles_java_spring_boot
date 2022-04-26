@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -44,21 +45,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().and()
                 .authorizeRequests()
-                .antMatchers("/").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
-                .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
-                .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
-                .antMatchers("/delete/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/console/**").permitAll()
+                    .antMatchers("/").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
+                    .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
+                    .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
+                    .antMatchers("/delete/**").hasAnyAuthority("ADMIN")
+                    .antMatchers("/console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
-                .and()
-                .logout().permitAll()
-                .and()
-                .rememberMe()
-                    .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(7))
-                    .key("rememberMeToken")
-                .and().exceptionHandling().accessDeniedPage("/403");
+                    .formLogin().permitAll()
+                    .and()
+                    .logout()
+                        .permitAll()
+                        .clearAuthentication(true)
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID", "rememberMeToken")
+                    .and()
+                    .rememberMe()
+                        .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(7))
+                        .key("rememberMeToken")
+                    .and().exceptionHandling().accessDeniedPage("/403");
+
         http.headers().frameOptions().disable();
     }
 }
