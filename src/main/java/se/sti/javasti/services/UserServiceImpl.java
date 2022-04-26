@@ -69,10 +69,8 @@ public class UserServiceImpl implements UserService {
                             if (updatedUser.getIsEnabled() != null)
                                 user.setIsEnabled(updatedUser.getIsEnabled());
                             if (!updatedUser.getRoles().isEmpty()) {
-                                Set<Role> newRoles = updatedUser.getRoles().stream().map(role -> {
-                                    return = roleRepository.findByName(role.getName())
-                                            .orElseThrow(() -> new RoleNotExistsException(role.getName()));
-                                }).collect(Collectors.toSet());
+                                Set<Role> newRoles = updatedUser.getRoles().stream().map(role -> roleRepository.findByName(role.getName())
+                                        .orElseThrow(() -> new RoleNotExistsException(role.getName()))).collect(Collectors.toSet());
                                 user.setRoles(newRoles);
                             }
                             return user;
