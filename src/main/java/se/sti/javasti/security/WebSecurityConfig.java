@@ -43,13 +43,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().and()
+                .csrf()
+                .disable()
                 .authorizeRequests()
                     .antMatchers("/").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
                     .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
                     .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
                     .antMatchers("/delete/**").hasAnyAuthority("ADMIN")
-                    .antMatchers("/console/**").permitAll()
+                    .antMatchers("/h2-console/**").permitAll() // TODO remove in production
                 .anyRequest().authenticated()
                 .and()
                     .formLogin().permitAll()
