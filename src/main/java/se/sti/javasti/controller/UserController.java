@@ -67,6 +67,7 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @PreAuthorize("hasAuthority('ADMIN')")
+    @ResponseStatus(HttpStatus.CREATED)
     public OkResponseBody<UserResponseDTO> createUser(@RequestBody @Valid UserCreateRequestDTO userCreateRequestDTO) {
         User userToCreate = mapper.map(userCreateRequestDTO, User.class);
         return new OkResponseBody<>("Created user", mapper.map(
